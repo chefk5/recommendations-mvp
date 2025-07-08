@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "home-app",
-    "slug": "home-app",
+    "name": "recommendations-app",
+    "slug": "recommendations-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
