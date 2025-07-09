@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  ScrollView,
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { colors, fontSizes, fontWeights, mainStyles } from "../theme/theme";
 import ScrollableList from "../components/home/ScrollableList";
-import { FlashList } from "@shopify/flash-list";
-import Card from "../components/home/Card";
 
 const dummyData = [
   {
@@ -52,7 +43,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    // paddingLeft: 16,
   },
   greeting: {
     fontSize: fontSizes.bg,
