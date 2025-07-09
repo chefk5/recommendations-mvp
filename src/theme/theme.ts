@@ -17,11 +17,28 @@ export const fontSizes = {
   bg: 26,
 };
 
+export const fontWeights: Record<
+  "light" | "regular" | "medium" | "semiBold" | "bold",
+  "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900"
+> = {
+  light: "300",
+  regular: "400",
+  medium: "500",
+  semiBold: "600",
+  bold: "700",
+};
+
 export const mainStyles = StyleSheet.create({
   marginH: {
     marginHorizontal: 20,
   },
   marginV: {
     marginVertical: 10,
+  },
+  paddingH: {
+    paddingHorizontal: 20,
+  },
+  paddingV: {
+    paddingVertical: 10,
   },
 });

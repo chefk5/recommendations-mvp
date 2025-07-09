@@ -4,6 +4,7 @@ import { MainRoutes, MainStack } from "./Types";
 // import Details from "../screens/Details";
 import { NavigationContainer } from "@react-navigation/native";
 import { BlogDetails, Home, ProductDetails } from "../screens";
+import { colors } from "../theme/theme";
 // import { colors } from "../styles/theme";
 
 function HomeStack() {
@@ -13,9 +14,11 @@ function HomeStack() {
         screenOptions={{
           headerStyle: {
             shadowColor: "transparent",
+            backgroundColor: colors.background,
             elevation: 0,
           },
-          //   headerTintColor: colors.textPrimary,
+          headerTintColor: colors.primary,
+          headerTitle: "",
         }}
       >
         <MainStack.Screen name={MainRoutes.Home} component={Home} />

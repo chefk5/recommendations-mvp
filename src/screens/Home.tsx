@@ -1,26 +1,3 @@
-// import { StyleSheet, Text, View } from "react-native";
-// import React from "react";
-
-// type Props = {};
-
-// const home = (props: Props) => {
-//   return (
-//     <View style={styles.container}>
-//       <Text>home</Text>
-//     </View>
-//   );
-// };
-
-// export default home;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-// });
-// screens/CarouselTest.tsx
 import React from "react";
 import {
   ScrollView,
@@ -30,105 +7,59 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { colors } from "../theme/theme";
+import { colors, fontSizes, fontWeights, mainStyles } from "../theme/theme";
+import ScrollableList from "../components/home/ScrollableList";
 import { FlashList } from "@shopify/flash-list";
+import Card from "../components/home/Card";
 
 const dummyData = [
   {
     id: "1",
-    title: "Ovulation Tips",
-    image: "https://via.placeholder.com/150x100.png?text=Blog+1",
+    title: "Ovulation Tips: lets explore the bets 5 tips to get pregnant",
+    image: "https://picsum.photos/200/300",
   },
   {
     id: "2",
     title: "Pregnancy Essentials",
-    image: "https://via.placeholder.com/150x100.png?text=Blog+2",
+    image: "https://picsum.photos/200/300",
   },
   {
     id: "3",
     title: "Best Vitamins",
-    image: "https://via.placeholder.com/150x100.png?text=Blog+3",
+    image: "https://picsum.photos/200/300",
   },
 ];
 
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Blog Posts</Text>
-      <FlashList
-        horizontal
+      <Text style={styles.greeting}>Hello!</Text>
+      <ScrollableList
         data={dummyData}
-        estimatedItemSize={160}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              width: 160,
-              marginRight: 12,
-              backgroundColor: colors.primary,
-              borderRadius: 12,
-              padding: 8,
-            }}
-          >
-            <Image source={{ uri: item.image }} style={{ height: 100 }} />
-            <Text>{item.title}</Text>
-          </View>
-        )}
-        showsHorizontalScrollIndicator={false}
+        heading="Latest blog posts"
+        type="blog"
       />
-
-      <View style={{ marginTop: 30 }}>
-        <FlashList
-          horizontal
-          data={dummyData}
-          estimatedItemSize={160}
-          renderItem={({ item }) => (
-            <View
-              style={{
-                width: 160,
-                marginRight: 12,
-                backgroundColor: colors.primary,
-                borderRadius: 12,
-                padding: 8,
-              }}
-            >
-              <Image source={{ uri: item.image }} style={{ height: 100 }} />
-              <Text>{item.title}</Text>
-            </View>
-          )}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
+      <ScrollableList
+        data={dummyData}
+        heading="Popular products"
+        type="product"
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 30,
-    paddingLeft: 16,
+    flex: 1,
+    backgroundColor: colors.background,
+    // paddingLeft: 16,
   },
-  heading: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 12,
-  },
-  card: {
-    width: 160,
-    marginRight: 12,
-    borderRadius: 12,
-    backgroundColor: colors.primary,
-    padding: 8,
-    elevation: 3,
-  },
-  image: {
-    width: "100%",
-    height: 90,
-    borderRadius: 8,
-  },
-  title: {
-    marginTop: 6,
-    fontSize: 14,
-    fontWeight: "500",
+  greeting: {
+    fontSize: fontSizes.bg,
+    color: colors.secondary,
+    fontWeight: fontWeights.bold,
+    marginBottom: 20,
+    ...mainStyles.marginH,
   },
 });
 
