@@ -5,33 +5,40 @@ import {
   View,
   Image,
   TouchableOpacity,
-  Linking,
   ScrollView,
 } from "react-native";
-import { colors, fontSizes, fontWeights } from "../theme/theme";
-
-const product = {
-  title: "Super Widget",
-  tagline: "The best widget for your needs",
-  description:
-    "This widget will help you accomplish everything you want. It's reliable, efficient, and affordable.",
-  price: "$49.99",
-  image: require("../../assets/adaptive-icon.png"),
-  link: "https://example.com/product/super-widget",
-};
+import { colors, fontSizes, fontWeights, mainStyles } from "../theme/theme";
+import { useRoute } from "@react-navigation/native";
+import { useFetchProduct } from "../api/useFetchProduct";
+import LoadingIndicator from "../components/common/LoadingIndicator";
+import CenteredMessage from "../components/common/CenteredMessage";
+import * as Linking from "expo-linking";
 
 export default function ProductDetails() {
+  const { productId } = useRoute().params as { productId: string };
+  const { data, isLoading, error } = useFetchProduct(productId);
+
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
+  if (error) {
+    return <CenteredMessage message={error.message} />;
+  }
+
   const handleOpenLink = () => {
-    Linking.openURL(product.link);
+    Linking.openURL(data?.externalLink);
   };
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={product.image} style={styles.image} />
-      <Text style={styles.title}>{product.title}</Text>
-      <Text style={styles.tagline}>{product.tagline}</Text>
-      <Text style={styles.description}>{product.description}</Text>
-      <Text style={styles.price}>{product.price}</Text>
+      <Image source={{ uri: data?.image }} style={styles.image} />
+      <Text style={styles.title}>{data?.title}</Text>
+      <Text style={styles.tagline}>{data?.tagline}</Text>
+      <View style={styles.descriptionWrapper}>
+        <Text style={styles.description}>{data?.description}</Text>
+      </View>
+
+      <Text style={styles.price}>Price: {data?.price}$</Text>
       <TouchableOpacity onPress={handleOpenLink} style={styles.linkButton}>
         <Text style={styles.linkText}>View Product</Text>
       </TouchableOpacity>
@@ -42,7 +49,7 @@ export default function ProductDetails() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    ...mainStyles.paddingH,
     backgroundColor: colors.background,
   },
   image: {
@@ -62,25 +69,31 @@ const styles = StyleSheet.create({
     color: colors.textLight,
     marginBottom: 8,
   },
+  descriptionWrapper: {
+    marginBottom: 12,
+  },
   description: {
-    fontSize: fontSizes.md,
-    color: colors.text,
-    marginBottom: 8,
+    fontSize: fontSizes.md1,
+    color: colors.textDark,
+    lineHeight: 25,
+    flexWrap: "wrap",
   },
   price: {
-    fontSize: fontSizes.lg,
+    fontSize: fontSizes.bg,
     fontWeight: fontWeights.bold,
     color: colors.primary,
     marginBottom: 16,
+    borderRadius: 6,
   },
   linkButton: {
-    backgroundColor: colors.button,
     padding: 12,
     borderRadius: 6,
     alignItems: "center",
+    borderColor: colors.secondary,
+    borderWidth: 1,
   },
   linkText: {
-    color: colors.buttonText,
+    color: colors.secondary,
     fontSize: fontSizes.md,
     fontWeight: fontWeights.bold,
   },

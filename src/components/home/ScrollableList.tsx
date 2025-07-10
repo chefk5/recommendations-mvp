@@ -37,18 +37,21 @@ const ScrollableList = ({
 }: ScrollableListProps) => {
   const navigation = useNavigation<StackNavigationProp<MainStackParamList>>();
 
-  const handleNavigate = useCallback(() => {
-    switch (type) {
-      case ScrollableListType.Blog:
-        navigation.navigate(MainRoutes.BlogDetails);
-        break;
-      case ScrollableListType.Product:
-        navigation.navigate(MainRoutes.ProductDetails);
-        break;
-      default:
-        break;
-    }
-  }, [navigation, type]);
+  const handleNavigate = useCallback(
+    (id: string) => {
+      switch (type) {
+        case ScrollableListType.Blog:
+          navigation.navigate(MainRoutes.BlogDetails, { blogId: id });
+          break;
+        case ScrollableListType.Product:
+          navigation.navigate(MainRoutes.ProductDetails, { productId: id });
+          break;
+        default:
+          break;
+      }
+    },
+    [navigation, type],
+  );
 
   if (isLoading) {
     return <SkeletonLoading />;
@@ -70,7 +73,7 @@ const ScrollableList = ({
           <Card
             image={item.image}
             title={item.title}
-            handleNavigate={handleNavigate}
+            handleNavigate={() => handleNavigate(item.id)}
             btnText={
               type === ScrollableListType.Blog ? "Read more" : "View more"
             }

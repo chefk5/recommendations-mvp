@@ -1,5 +1,5 @@
 // TODO: Add fast image
-
+// TODO: handle long titles
 import React from "react";
 import {
   View,

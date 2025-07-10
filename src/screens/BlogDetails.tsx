@@ -1,16 +1,27 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { colors, fontSizes, fontWeights } from "../theme/theme";
+import { useRoute } from "@react-navigation/native";
+import { useFetchBlogPost } from "../api/useFetchBlogPost";
+import LoadingIndicator from "../components/common/LoadingIndicator";
+import CenteredMessage from "../components/common/CenteredMessage";
 
 export default function BlogDetails() {
+  const { blogId } = useRoute().params as { blogId: string };
+  const { data, isLoading, error } = useFetchBlogPost(blogId);
+
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
+  if (error) {
+    return <CenteredMessage message={error.message} />;
+  }
+
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../assets/adaptive-icon.png")}
-        style={styles.image}
-      />
-      <Text style={styles.title}>Blog Title</Text>
-      <Text style={styles.description}>Blog description goes here.</Text>
+      <Image source={{ uri: data?.image }} style={styles.image} />
+      <Text style={styles.title}>{data?.title}</Text>
+      <Text style={styles.description}>{data?.description}</Text>
     </View>
   );
 }

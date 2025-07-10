@@ -12,8 +12,8 @@ export enum MainRoutes {
 
 export type MainStackParamList = {
   [MainRoutes.Home]: undefined;
-  [MainRoutes.BlogDetails]: undefined;
-  [MainRoutes.ProductDetails]: undefined;
+  [MainRoutes.BlogDetails]: { blogId: string };
+  [MainRoutes.ProductDetails]: { productId: string };
 };
 
 export type MainNavigationProp<
