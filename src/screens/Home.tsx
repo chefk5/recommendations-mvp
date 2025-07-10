@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { colors, fontSizes, fontWeights, mainStyles } from "../theme/theme";
 import ScrollableList from "../components/home/ScrollableList";
+import { ScrollableListType } from "../components/common/enums";
 
 const dummyData = [
   {
@@ -28,12 +29,12 @@ const Home = () => {
       <ScrollableList
         data={dummyData}
         heading="Latest blog posts"
-        type="blog"
+        type={ScrollableListType.Blog}
       />
       <ScrollableList
         data={dummyData}
         heading="Popular products"
-        type="product"
+        type={ScrollableListType.Product}
       />
     </View>
   );
