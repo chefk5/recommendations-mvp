@@ -1,4 +1,6 @@
-import React, { useCallback } from "react";
+// TODO: Add fast image
+
+import React from "react";
 import {
   View,
   Image,

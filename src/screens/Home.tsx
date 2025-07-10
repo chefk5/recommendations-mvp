@@ -3,38 +3,37 @@ import { View, Text, StyleSheet } from "react-native";
 import { colors, fontSizes, fontWeights, mainStyles } from "../theme/theme";
 import ScrollableList from "../components/home/ScrollableList";
 import { ScrollableListType } from "../components/common/enums";
-
-const dummyData = [
-  {
-    id: "1",
-    title: "Ovulation Tips: lets explore the bets 5 tips to get pregnant",
-    image: "https://picsum.photos/200/300",
-  },
-  {
-    id: "2",
-    title: "Pregnancy Essentials",
-    image: "https://picsum.photos/200/300",
-  },
-  {
-    id: "3",
-    title: "Best Vitamins",
-    image: "https://picsum.photos/200/300",
-  },
-];
+import { useFetchBlogPosts } from "../api/useFetchBlogPosts";
+import { useFetchProducts } from "../api/useFetchProducts";
 
 const Home = () => {
+  const {
+    data: blogData,
+    isLoading: isBlogLoading,
+    error: blogError,
+  } = useFetchBlogPosts();
+
+  const {
+    data: products,
+    isLoading: isProductsLoading,
+    error: productsError,
+  } = useFetchProducts();
   return (
     <View style={styles.container}>
       <Text style={styles.greeting}>Hello!</Text>
       <ScrollableList
-        data={dummyData}
+        data={blogData ?? []}
         heading="Latest blog posts"
         type={ScrollableListType.Blog}
+        isLoading={isBlogLoading}
+        error={blogError?.message}
       />
       <ScrollableList
-        data={dummyData}
+        data={products ?? []}
         heading="Popular products"
         type={ScrollableListType.Product}
+        isLoading={isProductsLoading}
+        error={productsError?.message}
       />
     </View>
   );

@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 import { colors, fontSizes, mainStyles } from "../../theme/theme";
 import React, { useCallback } from "react";
 import Card from "./Card";
@@ -6,6 +12,9 @@ import { useNavigation } from "@react-navigation/native";
 import { MainRoutes, MainStackParamList } from "../../navigation/Types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ScrollableListType } from "../common/enums";
+import LoadingIndicator from "../common/LoadingIndicator";
+import CenteredMessage from "../common/CenteredMessage";
+import SkeletonLoading from "../common/SkeletonLoading";
 
 type ScrollableListProps = {
   data: Array<{
@@ -15,9 +24,17 @@ type ScrollableListProps = {
   }>;
   heading?: string;
   type?: ScrollableListType;
+  isLoading?: boolean;
+  error?: string;
 };
 
-const ScrollableList = ({ data, heading, type }: ScrollableListProps) => {
+const ScrollableList = ({
+  data,
+  heading,
+  type,
+  isLoading,
+  error,
+}: ScrollableListProps) => {
   const navigation = useNavigation<StackNavigationProp<MainStackParamList>>();
 
   const handleNavigate = useCallback(() => {
@@ -33,9 +50,19 @@ const ScrollableList = ({ data, heading, type }: ScrollableListProps) => {
     }
   }, [navigation, type]);
 
+  if (isLoading) {
+    return <SkeletonLoading />;
+  }
+  if (data.length === 0) {
+    return <CenteredMessage message="No items available" />;
+  }
+  if (error) {
+    return <CenteredMessage message={`Error: ${error}`} />;
+  }
   return (
     <View style={{ flex: 1 }}>
       <Text style={styles.header}>{heading}</Text>
+
       <FlatList
         horizontal
         data={data}
