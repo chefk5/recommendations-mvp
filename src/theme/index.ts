@@ -8,14 +8,14 @@ export const colors = {
   textDark: "#333333",
   textLight: "#777777",
   accent: "#FFB74D",
-};
+} as const;
 export const fontSizes = {
   sm: 14,
   md: 18,
   md1: 20,
   md2: 22,
   bg: 26,
-};
+} as const;
 
 export const fontWeights: Record<
   "light" | "regular" | "medium" | "semiBold" | "bold",
@@ -26,7 +26,7 @@ export const fontWeights: Record<
   medium: "500",
   semiBold: "600",
   bold: "700",
-};
+} as const;
 
 export const mainStyles = StyleSheet.create({
   marginH: {

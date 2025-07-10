@@ -1,34 +1,29 @@
 // TODO: Add fast image
 // TODO: handle long titles
 import React from "react";
-import {
-  View,
-  Image,
-  Text,
-  StyleSheet,
-  ViewStyle,
-  TouchableOpacity,
-} from "react-native";
-import { colors, fontSizes, fontWeights } from "../../theme/theme";
+import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { colors, fontSizes, fontWeights } from "../../theme";
 
 type CardProps = {
   image: string;
   title: string;
-  style?: ViewStyle;
   btnText?: string;
   handleNavigate?: () => void;
 };
 const Card: React.FC<CardProps> = ({
   image,
   title,
-  style,
   btnText,
   handleNavigate,
 }) => {
   return (
     <TouchableOpacity onPress={handleNavigate} activeOpacity={1}>
-      <View style={[styles.container, style]}>
-        <Image source={{ uri: image }} style={styles.image} />
+      <View style={[styles.container]}>
+        <Image
+          source={{ uri: image }}
+          style={styles.image}
+          testID="card-image"
+        />
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.btnTxt}>{btnText}</Text>
       </View>

@@ -1,18 +1,11 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  ActivityIndicator,
-} from "react-native";
-import { colors, fontSizes, mainStyles } from "../../theme/theme";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { colors, fontSizes, mainStyles } from "../../theme";
 import React, { useCallback } from "react";
 import Card from "./Card";
 import { useNavigation } from "@react-navigation/native";
 import { MainRoutes, MainStackParamList } from "../../navigation/Types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ScrollableListType } from "../common/enums";
-import LoadingIndicator from "../common/LoadingIndicator";
 import CenteredMessage from "../common/CenteredMessage";
 import SkeletonLoading from "../common/SkeletonLoading";
 
@@ -88,7 +81,9 @@ const ScrollableList = ({
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ ...mainStyles.paddingH }}
         onEndReached={() => {
-          if (hasNextPage && !isFetchingNextPage) fetchNextPage();
+          if (hasNextPage && !isFetchingNextPage && fetchNextPage) {
+            fetchNextPage();
+          }
         }}
       />
     </View>

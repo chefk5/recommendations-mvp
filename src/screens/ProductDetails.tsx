@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { colors, fontSizes, fontWeights, mainStyles } from "../theme/theme";
+import { colors, fontSizes, fontWeights, mainStyles } from "../theme";
 import { useRoute } from "@react-navigation/native";
 import { useFetchProduct } from "../api/useFetchProduct";
 import LoadingIndicator from "../components/common/LoadingIndicator";

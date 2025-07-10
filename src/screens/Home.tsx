@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { colors, fontSizes, fontWeights, mainStyles } from "../theme/theme";
+import { colors, fontSizes, fontWeights, mainStyles } from "../theme";
 import ScrollableList from "../components/home/ScrollableList";
 import { ScrollableListType } from "../components/common/enums";
 import { useFetchBlogPosts } from "../api/useFetchBlogPosts";
@@ -24,7 +24,7 @@ const Home = () => {
     hasNextPage: hasNextPage,
     isFetchingNextPage: isFetchingNextPage,
   } = useFetchProducts();
-  
+
   return (
     <View style={styles.container}>
       <Text style={styles.greeting}>Hello!</Text>

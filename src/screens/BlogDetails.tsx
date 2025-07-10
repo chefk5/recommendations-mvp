@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { colors, fontSizes, fontWeights } from "../theme/theme";
+import { colors, fontSizes, fontWeights } from "../theme";
 import { useRoute } from "@react-navigation/native";
 import { useFetchBlogPost } from "../api/useFetchBlogPost";
 import LoadingIndicator from "../components/common/LoadingIndicator";

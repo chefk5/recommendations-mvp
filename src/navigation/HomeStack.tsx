@@ -4,7 +4,7 @@ import { MainRoutes, MainStack } from "./Types";
 // import Details from "../screens/Details";
 import { NavigationContainer } from "@react-navigation/native";
 import { BlogDetails, Home, ProductDetails } from "../screens";
-import { colors } from "../theme/theme";
+import { colors } from "../theme";
 // import { colors } from "../styles/theme";
 
 function HomeStack() {

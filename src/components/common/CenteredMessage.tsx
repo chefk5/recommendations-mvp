@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { colors } from "../../theme/theme";
+import { colors } from "../../theme";
 
 type CenteredMessageProps = {
   message: string;
