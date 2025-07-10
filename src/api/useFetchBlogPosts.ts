@@ -1,18 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { client } from "./contentfulClient";
 import { mapBlogEntries } from "../utils";
+import { showMessage } from "react-native-flash-message";
 
-export function useFetchBlogPosts() {
-  return useQuery({
+export function useFetchBlogPosts({ limit = 2 } = {}) {
+  return useInfiniteQuery({
     queryKey: ["blogPosts"],
-    queryFn: () =>
+    queryFn: ({ pageParam = 0 }) =>
       client
-        .getEntries({ content_type: "blog" }) // replace "blogPost" with your actual content type ID
+        .getEntries({ content_type: "blog", skip: pageParam as number, limit })
         .then((response) => mapBlogEntries(response.items))
         .catch((error) => {
-          // TODO handle error properly, maybe show a toast or log it
-          console.error("Error fetching blog posts:", error);
+          console.error("Error fetching posts:", error);
+          showMessage({
+            message: `Error fetching posts`,
+            type: "danger",
+          });
           return [];
         }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      const typedLastPage = lastPage as unknown[];
+      return typedLastPage.length === limit
+        ? allPages.length * limit
+        : undefined;
+    },
   });
 }

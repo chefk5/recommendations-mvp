@@ -26,6 +26,9 @@ type ScrollableListProps = {
   type?: ScrollableListType;
   isLoading?: boolean;
   error?: string;
+  fetchNextPage?: () => void;
+  hasNextPage?: boolean;
+  isFetchingNextPage?: boolean;
 };
 
 const ScrollableList = ({
@@ -34,6 +37,9 @@ const ScrollableList = ({
   type,
   isLoading,
   error,
+  fetchNextPage,
+  hasNextPage,
+  isFetchingNextPage,
 }: ScrollableListProps) => {
   const navigation = useNavigation<StackNavigationProp<MainStackParamList>>();
 
@@ -81,6 +87,9 @@ const ScrollableList = ({
         )}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ ...mainStyles.paddingH }}
+        onEndReached={() => {
+          if (hasNextPage && !isFetchingNextPage) fetchNextPage();
+        }}
       />
     </View>
   );

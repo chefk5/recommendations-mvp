@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { client } from "./contentfulClient";
-import { mapBlogDetail, mapProductDetail } from "../utils";
+import { mapProductDetail } from "../utils";
+import { showMessage } from "react-native-flash-message";
 
 export const useFetchProduct = (id: string | undefined) => {
   return useQuery({
@@ -9,8 +10,16 @@ export const useFetchProduct = (id: string | undefined) => {
       if (!id) {
         throw new Error("Product ID is required");
       }
-      const entry = await client.getEntry(id);
-      return mapProductDetail([entry])[0];
+      try {
+        const entry = await client.getEntry(id);
+        return mapProductDetail([entry])[0];
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        showMessage({
+          message: `Error fetching product`,
+          type: "danger",
+        });
+      }
     },
     enabled: !!id,
   });

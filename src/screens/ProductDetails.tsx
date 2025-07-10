@@ -22,7 +22,7 @@ export default function ProductDetails() {
     return <LoadingIndicator />;
   }
   if (error) {
-    return <CenteredMessage message={error.message} />;
+    return <CenteredMessage message={"Error fetching product details"} />;
   }
 
   const handleOpenLink = () => {
