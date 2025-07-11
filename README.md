@@ -1,2 +1,80 @@
-# rn-expo-ts-boilerplate
-A React Native boilerplate with Expo, ESlint, Prettier, Husky and TS.
+# Recommendation MVP App
+
+Browse blog posts and products, and view their details. All content is hosted and fetched from Contentful CMS. Items in the list support pagination and are automatically fetched when the 10th item is scrolled into view. Clicking on an item opens a details page showing either the blog post or product information.
+
+---
+
+## 🛠 Stack
+
+- **Framework**: React Native (Expo)
+- **Language**: TypeScript
+- **Navigation**: React Navigation
+- **API**: Contentful CMS
+- **Dev Tools**: ESLint, Prettier, Husky, Lint-staged
+
+---
+
+## 🚀 How to Run
+
+1. Copy the provided `.env.example` file and rename it to `.env`:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Fill in the required values:
+
+   ```env
+   CONTENTFUL_SPACE_ID=your_space_id_here
+   CONTENTFUL_ACCESS_TOKEN=your_access_token_here
+   ```
+
+   > These values will be provided separately. Make sure not to commit the `.env` file to version control.
+
+3. Install dependencies:
+
+   ```bash
+   yarn install
+   ```
+
+4. Start the app:
+   ```bash
+   npx expo start
+   ```
+
+---
+
+## 🧪 Run Tests
+
+```bash
+yarn test
+```
+
+---
+
+## 🧩 Task Breakdown
+
+Here’s how I approached building this MVP:
+
+- Understood the requirements and planned an initial design and flow for the two screens.
+- Searched for a CMS to host and serve the content.
+- Explored the CMS responses to understand the data shape.
+- Used one of my starter templates with TypeScript, ESLint, Prettier, lint-staged, and Husky to speed up setup.
+- Set up React Navigation.
+- Built the UI for all screens using mocked data first.
+- Integrated the CMS API with both screens.
+- Added improvements like error handling, toast messages, and minor UI fixes.
+- Tested the app and fixed bugs found during testing.
+- Cleaned up code and did a code review.
+- Added some basic tests.
+- Prepared this README.
+
+---
+
+## 🤔 Why Contentful?
+
+I chose Contentful CMS because:
+
+- It was quick to set up.
+- It offers a REST API that fits the project’s needs.
+- It's not overly complex and has solid documentation and support.
