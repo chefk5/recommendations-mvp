@@ -42,3 +42,5 @@ export const mainStyles = StyleSheet.create({
     paddingVertical: 10,
   },
 });
+
+export const blurhash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"; // static blurhash for placeholder

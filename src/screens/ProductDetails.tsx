@@ -3,16 +3,16 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { colors, fontSizes, fontWeights, mainStyles } from "../theme";
+import { blurhash, colors, fontSizes, fontWeights, mainStyles } from "../theme";
 import { useRoute } from "@react-navigation/native";
 import { useFetchProduct } from "../api/useFetchProduct";
 import LoadingIndicator from "../components/common/LoadingIndicator";
 import CenteredMessage from "../components/common/CenteredMessage";
 import * as Linking from "expo-linking";
+import { Image } from "expo-image";
 
 export default function ProductDetails() {
   const { productId } = useRoute().params as { productId: string };
@@ -31,7 +31,13 @@ export default function ProductDetails() {
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: data?.image }} style={styles.image} />
+      <Image
+        source={{ uri: data?.image }}
+        style={styles.image}
+        placeholder={{ blurhash }}
+        contentFit="cover"
+        transition={700}
+      />
       <Text style={styles.title}>{data?.title}</Text>
       <Text style={styles.tagline}>{data?.tagline}</Text>
       <View style={styles.descriptionWrapper}>

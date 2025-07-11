@@ -1,8 +1,7 @@
-// TODO: Add fast image
-// TODO: handle long titles
 import React from "react";
-import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { colors, fontSizes, fontWeights } from "../../theme";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { blurhash, colors, fontSizes, fontWeights } from "../../theme";
+import { Image } from "expo-image";
 
 type CardProps = {
   image: string;
@@ -20,11 +19,16 @@ const Card: React.FC<CardProps> = ({
     <TouchableOpacity onPress={handleNavigate} activeOpacity={1}>
       <View style={[styles.container]}>
         <Image
-          source={{ uri: image }}
+          source={image}
           style={styles.image}
           testID="card-image"
+          placeholder={{ blurhash }}
+          contentFit="cover"
+          transition={700}
         />
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title} numberOfLines={4} ellipsizeMode="tail">
+          {title}
+        </Text>
         <Text style={styles.btnTxt}>{btnText}</Text>
       </View>
     </TouchableOpacity>

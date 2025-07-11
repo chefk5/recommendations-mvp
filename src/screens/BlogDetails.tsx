@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
-import { colors, fontSizes, fontWeights } from "../theme";
+import { View, Text, StyleSheet } from "react-native";
+import { blurhash, colors, fontSizes, fontWeights } from "../theme";
 import { useRoute } from "@react-navigation/native";
 import { useFetchBlogPost } from "../api/useFetchBlogPost";
 import LoadingIndicator from "../components/common/LoadingIndicator";
 import CenteredMessage from "../components/common/CenteredMessage";
+import { Image } from "expo-image";
 
 export default function BlogDetails() {
   const { blogId } = useRoute().params as { blogId: string };
@@ -19,7 +20,13 @@ export default function BlogDetails() {
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: data?.image }} style={styles.image} />
+      <Image
+        source={data?.image}
+        style={styles.image}
+        placeholder={{ blurhash }}
+        contentFit="cover"
+        transition={700}
+      />
       <Text style={styles.title}>{data?.title}</Text>
       <Text style={styles.description}>{data?.description}</Text>
     </View>
