@@ -2,7 +2,6 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from "@react-navigation/stack";
-// import { ProductDetails } from "../app/types";
 
 export enum MainRoutes {
   Home = "Home",

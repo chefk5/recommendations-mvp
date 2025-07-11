@@ -1,11 +1,8 @@
 import React from "react";
 import { MainRoutes, MainStack } from "./Types";
-// import Products from "../screens/Products";
-// import Details from "../screens/Details";
 import { NavigationContainer } from "@react-navigation/native";
 import { BlogDetails, Home, ProductDetails } from "../screens";
 import { colors } from "../theme";
-// import { colors } from "../styles/theme";
 
 function HomeStack() {
   return (
