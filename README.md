@@ -2,6 +2,10 @@
 
 Browse blog posts and products, and view their details. All content is hosted and fetched from Contentful CMS. Items in the list support pagination and are automatically fetched when the 10th item is scrolled into view. Clicking on an item opens a details page showing either the blog post or product information.
 
+
+https://github.com/user-attachments/assets/2ca252da-cb8f-4373-bd24-082fcbf98f64
+
+
 ---
 
 ## 🛠 Stack
