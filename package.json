@@ -25,6 +25,7 @@
     "contentful": "^11.7.6",
     "expo": "^53.0.19",
     "expo-dev-client": "~5.2.4",
+    "expo-image": "~2.3.2",
     "expo-linking": "~7.1.7",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
