@@ -13,7 +13,8 @@ https://github.com/user-attachments/assets/2ca252da-cb8f-4373-bd24-082fcbf98f64
 - **Framework**: React Native (Expo)
 - **Language**: TypeScript
 - **Navigation**: React Navigation
-- **API**: Contentful CMS
+- **CMS**: Contentful CMS
+- **Network calls**: Tanstack React Query: Provides an easy-to-use API that handles data fetching, updating, and caching data. It simplifies displaying and obtaining error and loading states with its hooks, reducing boilerplate and improving performance through caching, data fetch updates, and validation.
 - **Dev Tools**: ESLint, Prettier, Husky, Lint-staged
 
 ---
@@ -63,7 +64,7 @@ Here’s how I approached building this MVP:
 - Understood the requirements and planned an initial design and flow for the two screens.
 - Searched for a CMS to host and serve the content.
 - Explored the CMS responses to understand the data shape.
-- Used one of my starter templates with TypeScript, ESLint, Prettier, lint-staged, and Husky to speed up setup.
+- Used one of my [starter templates]([https://link-url-here.org](https://github.com/chefk5/rn-expo-ts-boilerplate)). Which includes preconfigured libraries and tools such as husky, eslint, prettier and lint-staged.
 - Set up React Navigation.
 - Built the UI for all screens using mocked data first.
 - Integrated the CMS API with both screens.
