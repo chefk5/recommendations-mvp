@@ -64,7 +64,7 @@ Here’s how I approached building this MVP:
 - Understood the requirements and planned an initial design and flow for the two screens.
 - Searched for a CMS to host and serve the content.
 - Explored the CMS responses to understand the data shape.
-- Used one of my [starter templates]([https://link-url-here.org](https://github.com/chefk5/rn-expo-ts-boilerplate)). Which includes preconfigured libraries and tools such as husky, eslint, prettier and lint-staged.
+- Used one of my [starter templates](https://link-url-here.org](https://github.com/chefk5/rn-expo-ts-boilerplate). Which includes preconfigured libraries and tools such as husky, eslint, prettier and lint-staged.
 - Set up React Navigation.
 - Built the UI for all screens using mocked data first.
 - Integrated the CMS API with both screens.
